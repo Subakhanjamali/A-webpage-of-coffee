@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==================== META & TITLE SECTION ==================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew & Bean | Coffee Shop</title>
+    
+    <!-- ==================== STYLESHEETS SECTION ==================== -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- ==================== FAVICON SECTION ==================== -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- ==================== LOGIN/SIGNUP MODAL ==================== -->
+    <div class="login-modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            
+            <!-- Login Form -->
+            <div class="form-container active" id="loginForm">
+                <h2>Welcome Back!</h2>
+                <p>Login to your Brew & Bean account</p>
+                
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" placeholder="Email Address" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <i class="fas fa-lock"></i>
+                        <button type="button" class="show-password" id="showLoginPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="form-options">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Login</button>
+                </form>
+                
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="social-btn google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                </div>
+                
+                <p class="switch-form">
+                    Don't have an account? <a href="#" id="showSignup">Sign up</a>
+                </p>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="form-container" id="signupForm">
+                <h2>Join Brew & Bean</h2>
+                <p>Create your account to get started</p>
+                
+                <form id="signupFormElement">
+                    <div class="form-group">
+                        <input type="text" id="signupName" placeholder="Full Name" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signupEmail" placeholder="Email Address" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" placeholder="Create Password" required>
+                        <i class="fas fa-lock"></i>
+                        <button type="button" class="show-password" id="showSignupPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required> I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Create Account</button>
+                </form>
+                
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="social-btn google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                </div>
+                
+                <p class="switch-form">
+                    Already have an account? <a href="#" id="showLogin">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notificationMessage">Login successful!</span>
+        </div>
+    </div>
+
+    <!-- ==================== NAVIGATION SECTION ==================== -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logo -->
+            <a href="" class="logo">
+                <i class="fas fa-coffee"></i>
+                <span>Brew</span>&Bean
+            </a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="order-btn">Order Online</a></li>
+                <li><a href="#" class="login-btn" id="loginBtn">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Hero Text Content -->
+                <div class="hero-text">
+                    <h1>Fresh <span class="highlight">Coffee</span> in the Morning</h1>
+                    <p>Start your day with the perfect cup of coffee. Handcrafted with love since 2010.</p>
+                    <div class="hero-buttons">
+                        <a href="#menu" class="btn-primary">View Our Menu</a>
+                        <a href="#contact" class="btn-secondary">Visit Us Today</a>
+                    </div>
+                </div>
+                <!-- Hero Image -->
+                <div class="hero-image">
+                    <img src="image/cups1.jpg" alt="Coffee Cup">
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">Crafting perfect coffee since 2026</p>
+            </div>
+            
+            <!-- About Content -->
+            <div class="about-content">
+                <!-- About Image -->
+                <div class="about-image">
+                    <img src="image/coffee cup interior.jpg" alt="Coffee Shop Interior">
+                </div>
+                
+                <!-- About Text and Features -->
+                <div class="about-text">
+                    <h3>Welcome to Brew & Bean</h3>
+                    <p>Founded in a small garage by two coffee enthusiasts, Brew & Bean has grown into the city's favorite coffee destination. Our passion for perfect coffee drives everything we do.</p>
+                    <p>We source our beans directly from sustainable farms and roast them in-house to ensure the freshest flavor in every cup.</p>
+                    
+                    <!-- Features Grid -->
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-seedling"></i>
+                            <h4>Organic Beans</h4>
+                            <p>100% organic coffee beans</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <h4>Award Winning</h4>
+                            <p>Best coffee shop 2023</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <h4>Always Fresh</h4>
+                            <p>Freshly roasted daily</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MENU SECTION ==================== -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Our Coffee Menu</h2>
+                <p class="section-subtitle">Something for every coffee lover</p>
+            </div>
+            
+            <!-- Menu Filter Buttons -->
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="hot">Hot Coffee</button>
+                <button class="filter-btn" data-filter="cold">Cold Coffee</button>
+                <button class="filter-btn" data-filter="dessert">Desserts</button>
+            </div>
+            
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Hot Coffee Items -->
+                <div class="menu-item" data-category="hot">
+                    <div class="menu-img">
+                        <img src="image/esperosive.jpg" alt="Espresso">
+                        <div class="menu-category-badge">Hot Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="1">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Espresso</h3>
+                            <span class="price">$3.50</span>
+                        </div>
+                        <p>Strong and concentrated coffee served in small shots</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="1">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(45)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="hot">
+                    <div class="menu-img">
+                        <img src="image/cappuccino.jpg" alt="Cappuccino">
+                        <div class="menu-category-badge">Hot Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="2">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Cappuccino</h3>
+                            <span class="price">$4.50</span>
+                        </div>
+                        <p>Equal parts espresso, steamed milk, and milk foam</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="2">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(62)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="hot">
+                    <div class="menu-img">
+                        <img src="image/latte.jpg" alt="Latte">
+                        <div class="menu-category-badge">Hot Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="3">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Caramel Latte</h3>
+                            <span class="price">$5.00</span>
+                        </div>
+                        <p>Espresso with steamed milk and sweet caramel syrup</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="3">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(58)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="hot">
+                    <div class="menu-img">
+                        <img src="image/americano.jpg" alt="Americano">
+                        <div class="menu-category-badge">Hot Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="4">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Americano</h3>
+                            <span class="price">$3.75</span>
+                        </div>
+                        <p>Espresso shots topped with hot water</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="4">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(37)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="hot">
+                    <div class="menu-img">
+                        <img src="image/mocha.jpg" alt="Mocha">
+                        <div class="menu-category-badge">Hot Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="5">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Chocolate Mocha</h3>
+                            <span class="price">$5.25</span>
+                        </div>
+                        <p>Espresso with chocolate syrup and steamed milk</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="5">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(41)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="hot">
+                    <div class="menu-img">
+                        <img src="image/flat-white.jpg" alt="Flat White">
+                        <div class="menu-category-badge">Hot Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="6">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Flat White</h3>
+                            <span class="price">$4.75</span>
+                        </div>
+                        <p>Espresso with microfoam steamed milk</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="6">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(29)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cold Coffee Items -->
+                <div class="menu-item" data-category="cold">
+                    <div class="menu-img">
+                        <img src="image/iced-coffee.jpg" alt="Iced Coffee">
+                        <div class="menu-category-badge">Cold Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="7">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Iced Coffee</h3>
+                            <span class="price">$4.00</span>
+                        </div>
+                        <p>Chilled coffee served over ice with cream and sugar</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="7">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(73)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="cold">
+                    <div class="menu-img">
+                        <img src="image/cold-brew.jpg" alt="Cold Brew">
+                        <div class="menu-category-badge">Cold Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="8">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Cold Brew</h3>
+                            <span class="price">$4.75</span>
+                        </div>
+                        <p>Slow-steeped cold coffee for 12 hours, smooth and less acidic</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="8">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(68)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="cold">
+                    <div class="menu-img">
+                        <img src="image/frappuccino.jpg" alt="Frappuccino">
+                        <div class="menu-category-badge">Cold Coffee</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="9">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Frappuccino</h3>
+                            <span class="price">$5.50</span>
+                        </div>
+                        <p>Blended coffee drink with ice, milk, and flavored syrup</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="9">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(82)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dessert Items -->
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-img">
+                        <img src="image/croissant.jpg" alt="Croissant">
+                        <div class="menu-category-badge">Dessert</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="10">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Butter Croissant</h3>
+                            <span class="price">$3.25</span>
+                        </div>
+                        <p>Freshly baked flaky croissant made with real butter</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="10">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(56)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-img">
+                        <img src="image/dessert.jpg" alt="Chocolate Cake">
+                        <div class="menu-category-badge">Dessert</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="11">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Dessert</h3>
+                            <span class="price">$5.50</span>
+                        </div>
+                        <p>Rich and moist dessert with ganache frosting</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="11">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(94)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-img">
+                        <img src="image/blueberry-muffin.jpg" alt="Blueberry Muffin">
+                        <div class="menu-category-badge">Dessert</div>
+                        <div class="menu-overlay">
+                            <button class="quick-view-btn" data-id="12">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Blueberry Muffin</h3>
+                            <span class="price">$3.75</span>
+                        </div>
+                        <p>Fresh muffin packed with juicy blueberries</p>
+                        <div class="menu-footer">
+                            <button class="add-to-cart" data-id="12">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(47)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick View Modal -->
+            <div class="quick-view-modal" id="quickViewModal">
+                <div class="modal-content">
+                    <button class="close-modal" id="closeQuickView">&times;</button>
+                    <div class="quick-view-content" id="quickViewContent">
+                        <!-- Content will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Don't just take our word for it</p>
+            </div>
+            
+            <!-- Testimonial Cards -->
+            <div class="testimonial-slider">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The best coffee I've ever had! The atmosphere is perfect for working or relaxing."</p>
+                    <div class="customer">
+                        <img src="image/WhatsApp Image 2026-01-03 at 11.28.56 PM.jpeg" alt="Customer">
+                        <div>
+                            <h4>Abdul Qadeer</h4>
+                            <span>Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Their cold brew is amazing! I come here every morning before work."</p>
+                    <div class="customer">
+                        <img src="image/huzefa.jpg" alt="Customer">
+                        <div>
+                            <h4>Huzefa</h4>
+                            <span>Local Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Perfect spot for meetings. Great coffee and even better service!"</p>
+                    <div class="customer">
+                        <img src="image/mohsin.jpg" alt="Customer">
+                        <div>
+                            <h4>Mohsin</h4>
+                            <span>Freelancer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY SECTION ==================== -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Coffee Gallery</h2>
+                <p class="section-subtitle">A glimpse of our coffee world</p>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                    <img src="image/coffee latte art.avif" alt="Coffee Making">
+                    <div class="gallery-overlay">
+                        <h4>Latte Art</h4>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                    <img src="image/coffee cozy.avif" alt="Coffee Shop">
+                    <div class="gallery-overlay">
+                        <h4>Cozy Corner</h4>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item">
+                    <img src="image/coffee bean.avif" alt="Coffee Beans">
+                    <div class="gallery-overlay">
+                        <h4>Fresh Beans</h4>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item">
+                    <img src="image/brew.jfif" alt="Coffee Cup">
+                    <div class="gallery-overlay">
+                        <h4>Perfect Brew</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Visit Us Today</h2>
+                <p class="section-subtitle">We'd love to serve you</p>
+            </div>
+            
+            <!-- Contact Content -->
+            <div class="contact-content">
+                <!-- Contact Information Cards -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Location</h4>
+                        <p>123 Coffee Street<br>Karachi Pakistan</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Opening Hours</h4>
+                        <p>Monday - Friday: 7am - 9pm<br>Saturday - Sunday: 8am - 10pm</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <h4>Contact</h4>
+                        <p>Phone: 030000000000<br>Email: hello@brewnbean.com</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER SECTION ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Footer Content Grid -->
+            <div class="footer-content">
+                <!-- Column 1: Logo & Social -->
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-coffee"></i>
+                        <span>Brew</span>&Bean
+                    </div>
+                    <p>Fresh coffee, warm atmosphere, and great conversations since 2010.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3: Menu Links -->
+                <div class="footer-col">
+                    <h4>Our Menu</h4>
+                    <ul>
+                        <li><a href="#menu" data-filter="hot">Hot Coffee</a></li>
+                        <li><a href="#menu" data-filter="cold">Cold Brew</a></li>
+                        <li><a href="#menu" data-filter="dessert">Pastries</a></li>
+                        <li><a href="#menu">Specialty Drinks</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates and special offers</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your Email">
+                        <button type="button"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom (Copyright) -->
+            <div class="footer-bottom">
+                <p>&copy; 2023 Brew & Bean Coffee Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== BACK TO TOP BUTTON ==================== -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ==================== JAVASCRIPT SECTION ==================== -->
+    <script src="script.js"></script>
+</body>
+</html>
